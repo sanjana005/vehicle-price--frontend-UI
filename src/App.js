@@ -4,6 +4,9 @@ import Login from './Components/Login';
 import Registration from './Components/Registration';
 import UserNavbar from './Components/UserNavbar';
 import UserHome from './Components/UserHome';
+import Advertisements from './Components/Advertisements';
+import About from './Components/About';
+import Contact from './Components/Contact';
 
 function App() {
   return (
@@ -13,7 +16,10 @@ function App() {
           <Route path='/Login' element={<Login />} />
           <Route path='/Registration' element={<Registration />} />
           <Route path='/UserNavbar' element={<UserNavbar />} />
-          <Route path='/' element={<UserHome/>} />
+          <Route path='/UserHome' element={<UserHome/>} />
+          <Route path='/Advertisements' element={<Advertisements/>} />
+          <Route path='/About' element={<About/>} />
+          <Route path='/Contact' element={<Contact/>} />
         </Routes>
       </Router>      
     </div>
