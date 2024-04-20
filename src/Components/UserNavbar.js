@@ -6,7 +6,7 @@ function UserNavbar() {
   const navigate = useNavigate();
 
   const tabStyle = {
-    color: 'black',
+    color: 'white',
     textDecoration: 'none',
     transition: 'color 0.2s',
     margin: '0 10px',
@@ -18,7 +18,7 @@ function UserNavbar() {
   };
 
   const handleTabLeave = (e) => {
-    e.target.style.color = 'black'; 
+    e.target.style.color = 'white'; // Set the color back to white after hover
   };
 
   const handleLogout = () => {
@@ -27,7 +27,7 @@ function UserNavbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: 'black' }}>
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           <img src={logo} alt="Vehicle" style={{ width: '100px', height: '45px', marginLeft: '50px' }} />
@@ -55,7 +55,7 @@ function UserNavbar() {
               </Link>
             </li>
           </ul>
-          <button className="btn btn-primary" style={{ marginLeft: '10px' }} onClick={handleLogout}>Logout</button> {/* Adjust margin */}
+          <button className="btn btn-primary" style={{ marginLeft: '10px' }} onClick={handleLogout}>Logout</button>
         </div>
       </div>
     </nav>
