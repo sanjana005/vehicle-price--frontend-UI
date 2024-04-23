@@ -6,6 +6,7 @@ function Login(){
     const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [userType, setUserType] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
@@ -38,24 +39,29 @@ function Login(){
         const data = {
             Email : email,
             Password : password,
+            UserType: userType
         }
 
-        const url = `https://localhost:44312/api/User/UserLogin`;
+        const url = `https://localhost:7170/api/User/UserLogin`;
         axios.post(url, data)
         .then((result) => {
             const dt = result.data;
             localStorage.setItem("loggedInEmail", email);
             alert(dt.statusMessage);
 
-            const userType2 = dt.userRegistration ? dt.userRegistration.userType : null;
-            const userType3 = dt.adminRegistration ? dt.adminRegistration.userType : null;
+            const userType = dt.userType;
 
-            if (userType2 === "User"){
-                navigate('/UserDashboard');
-            } else if (userType3 === "Admin"){
-                navigate('/ManageUser');
+
+            console.log("User type 1:", userType);
+            console.log("User type 2:", userType);
+
+
+            if (userType === "General User"){
+                navigate('/UserHome');
+            } else if (userType === "Admin"){
+                navigate('/ManageVehicles');
             } else {
-                console.error('Invalid user type:', userType2);
+                console.error('Invalid user type:', userType);
             }
         })
         .catch((error)=>{
@@ -90,6 +96,35 @@ function Login(){
                         <input type="password" id="form3Example4" className={`form-control form-control-lg ${passwordError ? 'is-invalid' : ''}`}
                         placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}/>
                         {passwordError && <div className="invalid-feedback">{passwordError}</div>}
+                    </div>
+
+                    <div className="form-check form-check-inline">
+                        <input
+                            type="radio"
+                            className="form-check-input"
+                            id="userRadio"
+                            name="userType"
+                            value="General User"
+                            checked={userType === 'General User'}
+                            onChange={() => setUserType('General User')}
+                        />
+                        <label className="form-check-label" htmlFor="userRadio">
+                            General User
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            type="radio"
+                            className="form-check-input"
+                            id="adminRadio"
+                            name="userType"
+                            value="Admin"
+                            checked={userType === 'Admin'}
+                            onChange={() => setUserType('Admin')}
+                        />
+                        <label className="form-check-label" htmlFor="adminRadio">
+                            Admin
+                        </label>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">

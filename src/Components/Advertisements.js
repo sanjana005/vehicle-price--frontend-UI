@@ -8,7 +8,7 @@ const ViewVehicles = () => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const fetchVehicleData = () => {
-    fetch('your-backend-api-url')
+    fetch('https://localhost:7170/api/Vehicle/GetVehicles') // Your backend API URL
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -16,7 +16,7 @@ const ViewVehicles = () => {
         return response.json();
       })
       .then(data => {
-        setVehicleList(data); // Assuming data is an array of vehicle objects
+        setVehicleList(data); 
       })
       .catch(error => {
         console.error('Error fetching vehicle data:', error);
@@ -28,25 +28,6 @@ const ViewVehicles = () => {
     setShowModal(true);
   };
 
-  // Function to decode Base64 string to Blob
-  const decodeBase64ToBlob = (base64String) => {
-    const byteString = atob(base64String.split(',')[1]);
-    const mimeString = base64String.split(',')[0].split(':')[1].split(';')[0];
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const uint8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      uint8Array[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([arrayBuffer], { type: mimeString });
-  };
-
-  // Function to display image
-  const displayImage = (base64String) => {
-    const blob = decodeBase64ToBlob(base64String);
-    const imageUrl = URL.createObjectURL(blob);
-    return imageUrl;
-  };
-
   useEffect(() => {
     fetchVehicleData();
   }, []);
@@ -54,45 +35,59 @@ const ViewVehicles = () => {
   return (
     <>
       <UserNavbar />
-      <div className="d-flex flex-wrap justify-content-center">
-        {vehicleList.map((vehicle) => (
-          <Card key={vehicle.id} style={{ width: '18rem', margin: '10px' }}>
-            <Card.Img variant="top" src={displayImage(vehicle.image)} style={{ height: '200px', objectFit: 'cover' }} />
-            <Card.Body>
-              <Card.Title>{vehicle.brand}</Card.Title>
-              <Card.Text>
-                <strong>Model:</strong> {vehicle.model}<br />
-                <strong>Year:</strong> {vehicle.year}<br />
-                <strong>Price:</strong> LKR {vehicle.price}
-              </Card.Text>
-              <Button variant="primary" onClick={() => handleShowModal(vehicle)}>View Details</Button>
-            </Card.Body>
-          </Card>
-        ))}
-      </div>
+      <div className="container mt-4">
+        <h1 className="mb-4">View Vehicles</h1>
+        <div className="row">
+          {vehicleList.map((vehicle) => (
+            <div key={vehicle.id} className="col-lg-4 col-md-6 mb-4">
+              <Card>
+                <Card.Body>
+                  <Card.Title>{vehicle.brand}</Card.Title>
+                  <Card.Text>
+                    <strong>Model:</strong> {vehicle.model}<br />
+                    <strong>Vehicle Type:</strong> {vehicle.vehicleType}<br />
+                    <strong>Location:</strong> {vehicle.location}<br />
+                    <strong>Mileage:</strong> {vehicle.mileage}<br />
+                    <strong>Posted Date:</strong> {vehicle.postedDate}<br />
+                    {/* <strong>Currency Rate:</strong> {vehicle.currencyRate}<br />
+                    <strong>Manufactured Year:</strong> {vehicle.manufacturedYear}<br />
+                    <strong>Fuel Type:</strong> {vehicle.fuelType}<br />
+                    <strong>Transmission:</strong> {vehicle.transmission}<br />
+                    <strong>Price:</strong> {vehicle.price} */}
+                  </Card.Text>
+                  <Button variant="primary" onClick={() => handleShowModal(vehicle)}>View Details</Button>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
 
-      {/* Modal to display vehicle details */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedVehicle && selectedVehicle.brand} Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedVehicle && (
-            <>
-              <p><strong>Model:</strong> {selectedVehicle.model}</p>
-              <p><strong>Year:</strong> {selectedVehicle.year}</p>
-              <p><strong>Price:</strong> LKR {selectedVehicle.price}</p>
-              <p><strong>Color:</strong> {selectedVehicle.features.color}</p>
-              <p><strong>Mileage:</strong> {selectedVehicle.features.mileage}km</p>
-              <p><strong>Engine:</strong> {selectedVehicle.features.engine}</p>
-              <p><strong>Transmission:</strong> {selectedVehicle.features.transmission}</p>
-            </>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+        {/* Modal to display vehicle details */}
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>{selectedVehicle && selectedVehicle.brand} Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {selectedVehicle && (
+              <>
+                <p><strong>Model:</strong> {selectedVehicle.model}</p>
+                <p><strong>Vehicle Type:</strong> {selectedVehicle.vehicleType}</p>
+                <p><strong>Location:</strong> {selectedVehicle.location}</p>
+                <p><strong>Mileage:</strong> {selectedVehicle.mileage}</p>
+                <p><strong>Posted Date:</strong> {selectedVehicle.postedDate}</p>
+                <p><strong>Currency Rate:</strong> {selectedVehicle.currencyRate}</p>
+                <p><strong>Manufactured Year:</strong> {selectedVehicle.manufacturedYear}</p>
+                <p><strong>Fuel Type:</strong> {selectedVehicle.fuelType}</p>
+                <p><strong>Transmission:</strong> {selectedVehicle.transmission}</p>
+                <p><strong>Price:</strong> {selectedVehicle.price}</p>
+              </>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </>
   );
 };
