@@ -35,23 +35,13 @@ function UserNavbar() {
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/UserHome" className="nav-link" style={tabStyle} onMouseEnter={handleTabHover} onMouseLeave={handleTabLeave}>
-                Home
+              <Link to="/ManageVehicles" className="nav-link" style={tabStyle} onMouseEnter={handleTabHover} onMouseLeave={handleTabLeave}>
+                Vehicle Details
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/Advertisements" className="nav-link" style={tabStyle} onMouseEnter={handleTabHover} onMouseLeave={handleTabLeave}>
-                Advertisements
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/About" className="nav-link" style={tabStyle} onMouseEnter={handleTabHover} onMouseLeave={handleTabLeave}>
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/Contact" className="nav-link" style={tabStyle} onMouseEnter={handleTabHover} onMouseLeave={handleTabLeave}>
-                Contact
+              <Link to="/Prediction" className="nav-link" style={tabStyle} onMouseEnter={handleTabHover} onMouseLeave={handleTabLeave}>
+                Prediction
               </Link>
             </li>
           </ul>

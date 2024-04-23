@@ -1,6 +1,7 @@
 import React from 'react';
 import UserNavbar from './UserNavbar';
 import backgroundImage from '../assets/images/BG.jpg';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -24,7 +25,7 @@ function Home() {
             onMouseEnter={(e) => { e.target.style.backgroundColor = 'limegreen'; }}
             onMouseLeave={(e) => { e.target.style.backgroundColor = 'lightgreen'; }}
             >
-            Predict Price
+            <Link to="/Prediction" style={{ textDecoration: 'none', color: 'inherit' }}>Predict Price</Link>
             </button>
 
         </div>

@@ -7,7 +7,7 @@ function Registration() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [contact, setContact] = useState('');
-  const userType = 'General User'; // Added user type
+  const userType = 'General User'; 
 
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -48,25 +48,26 @@ function Registration() {
     }
 
     if (isValid) {
-      const url = `https://localhost:44312/api/User/UserRegistration`;
+      const url = `https://localhost:7170/api/User/UserRegistartion`;
 
       const data = {
         Name: name,
         Email: email,
         Password: password,
         Contact: contact,
-        UserType: userType // Passed user type to the backend
+        UserType: userType,
+        PhoneNo: contact
       }
 
-      axios.post(url, data)
-        .then((result) => {
-          clear();
-          const dt = result.data;
-          alert(dt.statusMessage);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
+      axios.post(url,data)
+      .then((result) => {
+        clear();
+        const dt = result.data;
+        alert(dt.statusMessage);
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
     }
   }
 
