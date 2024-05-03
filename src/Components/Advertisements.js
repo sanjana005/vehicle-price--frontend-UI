@@ -8,7 +8,7 @@ const ViewVehicles = () => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const fetchVehicleData = () => {
-    fetch('https://localhost:7170/api/Vehicle/GetVehicles') // Your backend API URL
+    fetch('https://localhost:7170/api/Vehicle/GetAdvertisement') 
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -36,7 +36,7 @@ const ViewVehicles = () => {
     <>
       <UserNavbar />
       <div className="container mt-4">
-        <h1 className="mb-4">View Vehicles</h1>
+        <h1 className="mb-4">Advertisements</h1>
         <div className="row">
           {vehicleList.map((vehicle) => (
             <div key={vehicle.id} className="col-lg-4 col-md-6 mb-4">
@@ -75,7 +75,7 @@ const ViewVehicles = () => {
                 <p><strong>Location:</strong> {selectedVehicle.location}</p>
                 <p><strong>Mileage:</strong> {selectedVehicle.mileage}</p>
                 <p><strong>Posted Date:</strong> {selectedVehicle.postedDate}</p>
-                <p><strong>Currency Rate:</strong> {selectedVehicle.currencyRate}</p>
+                {/* <p><strong>Currency Rate:</strong> {selectedVehicle.currencyRate}</p> */}
                 <p><strong>Manufactured Year:</strong> {selectedVehicle.manufacturedYear}</p>
                 <p><strong>Fuel Type:</strong> {selectedVehicle.fuelType}</p>
                 <p><strong>Transmission:</strong> {selectedVehicle.transmission}</p>

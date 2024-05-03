@@ -193,7 +193,9 @@ function AdminPanel() {
                 placeholder="Enter brand"
                 value={newVehicleData.brand}
                 onChange={(e) => setNewVehicleData({...newVehicleData, brand: e.target.value})}
+                required
                 />
+                {!newVehicleData.brand && <Form.Text className="text-danger">Brand is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="model">
                 <Form.Label>Model</Form.Label>
@@ -202,7 +204,9 @@ function AdminPanel() {
                 placeholder="Enter model"
                 value={newVehicleData.model}
                 onChange={(e) => setNewVehicleData({...newVehicleData, model: e.target.value})}
+                required
                 />
+                {!newVehicleData.model && <Form.Text className="text-danger">Model is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="vehicleType">
                 <Form.Label>Vehicle Type</Form.Label>
@@ -211,7 +215,9 @@ function AdminPanel() {
                 placeholder="Enter vehicle type"
                 value={newVehicleData.vehicleType}
                 onChange={(e) => setNewVehicleData({...newVehicleData, vehicleType: e.target.value})}
+                required
                 />
+                {!newVehicleData.vehicleType && <Form.Text className="text-danger">Vehicle Type is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="location">
                 <Form.Label>Location</Form.Label>
@@ -220,7 +226,9 @@ function AdminPanel() {
                 placeholder="Enter location"
                 value={newVehicleData.location}
                 onChange={(e) => setNewVehicleData({...newVehicleData, location: e.target.value})}
+                required
                 />
+                {!newVehicleData.location && <Form.Text className="text-danger">Location is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="mileage">
                 <Form.Label>Mileage</Form.Label>
@@ -229,7 +237,9 @@ function AdminPanel() {
                 placeholder="Enter mileage"
                 value={newVehicleData.mileage}
                 onChange={(e) => setNewVehicleData({...newVehicleData, mileage: e.target.value})}
+                required
                 />
+                {!newVehicleData.mileage && <Form.Text className="text-danger">Mileage is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="postedDate">
                 <Form.Label>Posted Date</Form.Label>
@@ -247,7 +257,9 @@ function AdminPanel() {
                 placeholder="Enter Currency Rate"
                 value={newVehicleData.currencyRate}
                 onChange={(e) => setNewVehicleData({...newVehicleData, currencyRate: e.target.value})}
+                required
                 />
+                {!newVehicleData.currencyRate && <Form.Text className="text-danger">Currency Rate is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="manufacturedYear">
                 <Form.Label>Manufactured Year</Form.Label>
@@ -256,7 +268,9 @@ function AdminPanel() {
                 placeholder="Enter manufactured year"
                 value={newVehicleData.manufacturedYear}
                 onChange={(e) => setNewVehicleData({...newVehicleData, manufacturedYear: e.target.value})}
+                required
                 />
+                {!newVehicleData.manufacturedYear && <Form.Text className="text-danger">Manufactured Year is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="fuelType">
                 <Form.Label>Fuel Type</Form.Label>
@@ -265,7 +279,9 @@ function AdminPanel() {
                 placeholder="Enter fuel type"
                 value={newVehicleData.fuelType}
                 onChange={(e) => setNewVehicleData({...newVehicleData, fuelType: e.target.value})}
+                required
                 />
+                {!newVehicleData.fuelType && <Form.Text className="text-danger">Fuel Type is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="transmission">
                 <Form.Label>Transmission</Form.Label>
@@ -274,7 +290,9 @@ function AdminPanel() {
                 placeholder="Enter transmission"
                 value={newVehicleData.transmission}
                 onChange={(e) => setNewVehicleData({...newVehicleData, transmission: e.target.value})}
+                required
                 />
+                {!newVehicleData.transmission && <Form.Text className="text-danger">Transmission is required.</Form.Text>}
             </Form.Group>
             <Form.Group controlId="price">
                 <Form.Label>Price</Form.Label>
@@ -283,7 +301,9 @@ function AdminPanel() {
                 placeholder="Enter price"
                 value={newVehicleData.price}
                 onChange={(e) => setNewVehicleData({...newVehicleData, price: e.target.value})}
+                required
                 />
+                {!newVehicleData.price && <Form.Text className="text-danger">Price is required.</Form.Text>}
             </Form.Group>
           </Form>
         </Modal.Body>
